@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Section</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .comment-box {
+        font-family: 'Poppins', sans-serif;
+        /* max-width: 500px; */
+        width: 100%;
+        height: 700px;
+        margin: auto;
+        padding: 10px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px #ccc;
+    }
+
+    .comment {
+        margin-bottom: 10px;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+
+   .btn button {
+        padding: 10px;
+        width: 150px;
+        border-radius: 30px;
+        background: white;
+        color: black;
+        outline: none;
+        transition: transform 0.5s;
+    }
+   
+
+    button:hover {
+        transition: 0.5s;
+        background: rgb(0, 0, 0);
+        color: rgb(252, 249, 249);
+        
+    }
+</style>
+
+<body>
+
+    <div class="container" style="display: flex;  font-family: 'Poppins',sans-serif;">
+        <div class="comment-box" style="width: 80%; height: 100%; ">
+            <h2>Product Feedbacks</h2>
+            <input type="text" id="name" placeholder="Your Name" required
+                style="padding: 10px; border-radius: 30px; outline: none;"><br><br>
+            <textarea id="text" placeholder="Your Comment" required 
+                style="padding: 15px; width: 80%; border-radius: 10px; outline: none;  font-family: 'Poppins',sans-serif;"></textarea>
+           
+            
+            <div class="btn">
+                <button onclick="addComment()">Submit</button>
+            </div>
+
+            <button onclick="downloadExcel()">Download Comments</button>
+            <h3>Comments:</h3>
+            <div id="comments"></div>
+        </div>
+    </div>
+
+
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script>
+        async function fetchComments() {
+            const response = await fetch('/comments');
+            const data = await response.json();
+            document.getElementById('comments').innerHTML = data.map(c =>
+                ` <div class="comment"><strong>${c.name}</strong>: ${c.text} <br><small>${c.timestamp}</small></div>`
+            ).join('');
+        }
+
+        async function addComment() {
+            const name = document.getElementById('name').value;
+            const text = document.getElementById('text').value;
+            if (!name || !text) return alert('Please fill all fields!');
+
+            await fetch('/comments', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, text })
+            });
+            document.getElementById('name').value = '';
+            document.getElementById('text').value = '';
+            fetchComments();
+        }
+
+        function downloadExcel() {
+            window.location.href = '/download_excel';
+        }
+
+        fetchComments();
+
+
+    </script>
+</body>
+
+</html>

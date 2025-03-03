@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox - Product Alerts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            width: 60%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+
+        }
+        .mail-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+            margin: 10px;
+        }
+        .mail-item:last-child {
+            border-bottom: none;
+        }
+        .positive {
+            background-color: #d4edda; /* Light green */
+            color: #155724;
+        }
+        .negative {
+            background-color: #f8d7da; /* Light red */
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Inbox - Product Alerts</h2>
+        <div class="mail-item">Your Red printed t-shirt has 0 sales in the last 3 months.</div>
+        <div class="mail-item">Your Blue jeans have very low sales performance.</div>
+        <div class="mail-item">Your Black shoes are out of stock but no new orders.</div>
+        <div class="mail-item">Your White hoodie has been returned multiple times due to defects.</div>
+        <div class="mail-item">Your Green cap has not been viewed in the last 60 days.</div>
+        <div class="mail-item">Your Yellow sneakers are receiving negative reviews.</div>
+        <div class="mail-item">Your Brown leather jacket has only 2 units left in stock.</div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.mail-item').forEach(item => {
+            let text = item.textContent.toLowerCase();
+            if (text.includes('negative') || text.includes('low sales') || text.includes('out of stock') || 
+                text.includes('returned') || text.includes('not been viewed') || text.includes('0 sales')) {
+                item.classList.add('negative');
+            } else {
+                item.classList.add('positive');
+            }
+        });
+    </script>
+</body>
+</html>

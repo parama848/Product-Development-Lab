@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <style>
+        
+/* comment box */
+
+.ct-box{
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.ct-box .container {
+    width: 100%;
+    background: #fff;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.ct-box .col-2 ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px;
+   font-size: 18px;
+}
+
+.comment-box {
+    width: 100%;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    background: #f0f0f0;
+    resize: none;
+    font-size: 16px;
+    
+}
+
+/* .comment-list {
+    margin-top: 20px;
+} */
+.comment-list {
+    margin-top: 20px;
+    max-height: 300px; /* Set the height to your preference */
+    overflow-y: auto;  /* This will allow scrolling */
+}
+
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+ .comment img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    
+}
+
+.comment p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.comment img.comment-image {
+     /* width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;  */
+    width: auto; /* Prevents stretching */
+    max-width: 300px; /* Set a reasonable max width */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block;
+     
+}
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgb(255, 255, 255);
+    color: rgb(10, 10, 10);
+    border-radius: 30px;
+    padding:10px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: transform 0.5s;
+    
+}
+.delete-btn:hover{
+    transition: 0.5s;
+    border: 1px solid black;
+    background: rgb(6, 6, 6);
+    color: rgb(254, 249, 249);
+
+}
+ .input-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+   
+}
+
+ .input-section .comment-box{
+    width: 100%;
+    height: 90px;
+}
+
+ .input-section img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.post-btn {
+    border: none;
+    background: #fdfeff;
+    color: rgb(9, 8, 8);
+    padding: 7px 7px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid black;
+    transition: transform 0.5s;
+
+}
+.post-btn:hover{
+    background: #0b0a0a;
+    color: rgb(247, 240, 240);
+    transition: 0.5s;
+}
+
+.post-btn:disabled {
+    background: #bdc6cc;
+    cursor: not-allowed;
+}
+.ct-box .container{
+    margin: 70px;
+    padding: 20px;
+}
+.ct-box1 .checkbox-container{
+    margin: 60px;
+    margin-left: 320px; 
+    text-align: center;
+    font-size: 20px;
+    padding: 25px;
+    width: 810px;
+    border-radius: 10px;
+    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* comment box */
+
+    </style>
+                        
+ <!-- comment -->  
+  
+ <div class="ct-box1">
+    
+    
+    <div class="ct-box" id="commentBox">
+        <div class="container">
+            <h2 id="commentTitle">Comments</h2>
+            <div class="comment-list" id="commentList"></div>
+            <div class="input-section">
+                <img src="images/Parama.jpg" alt="User" width="130px" height="auto">
+                <textarea id="commentInput" class="comment-box" rows="2" placeholder="Write a comment..." style="width: 100%; height: 55px; font-size: 15px; padding-top: 20px;"></textarea>
+            </div>
+            <div class="input-section">
+                <input type="file" id="imageInput" accept="image/*" style="padding: 30px 62px;" class="choose">
+                <button id="postBtn" class="post-btn" onclick="postComment()" disabled>Post</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+         <!-- comment -->
+
+
+
+
+         <script>
+            document.addEventListener("DOMContentLoaded", loadComments);
+        
+            function showCommentBox(category) {
+                document.getElementById('commentBox').style.display = 'block';
+                document.getElementById('commentTitle').innerText = `Comments - ${category}`;
+            }
+        
+            document.getElementById("commentInput").addEventListener("input", togglePostButton);
+            document.getElementById("imageInput").addEventListener("change", togglePostButton);
+            
+            // Listen for "Enter" key press to post comment
+            document.getElementById("commentInput").addEventListener("keypress", function (event) {
+                if (event.key === "Enter" && !document.getElementById("postBtn").disabled) {
+                    event.preventDefault();
+                    postComment();
+                }
+            });
+        
+            function togglePostButton() {
+                let commentText = document.getElementById("commentInput").value.trim();
+                let imageFile = document.getElementById("imageInput").files.length > 0;
+                document.getElementById("postBtn").disabled = !(commentText || imageFile);
+            }
+        
+            function postComment() {
+                let commentInput = document.getElementById("commentInput");
+                let commentText = commentInput.value.trim();
+                let imageInput = document.getElementById("imageInput");
+                let imageFile = imageInput.files[0];
+        
+                if (commentText !== "" || imageFile) {
+                    let commentList = document.getElementById("commentList");
+                    let newComment = document.createElement("div");
+                    newComment.classList.add("comment");
+        
+                    let userImg = document.createElement("img");
+                    userImg.src = "images/Parama.jpg";
+                    userImg.alt = "User";
+                    newComment.appendChild(userImg);
+        
+                    let commentContent = document.createElement("div");
+                    let savedComment = { text: commentText, image: "" };
+        
+                    if (commentText !== "") {
+                        let textNode = document.createElement("p");
+                        textNode.textContent = commentText;
+                        commentContent.appendChild(textNode);
+                    }
+        
+                    if (imageFile) {
+                        let imgElement = document.createElement("img");
+                        let reader = new FileReader();
+        
+                        reader.onload = function (e) {
+                            imgElement.src = e.target.result;
+                            savedComment.image = e.target.result;
+                            saveComment(savedComment);
+                        };
+        
+                        imgElement.classList.add("comment-image");
+                        reader.readAsDataURL(imageFile);
+                        commentContent.appendChild(imgElement);
+                    } else {
+                        saveComment(savedComment);
+                    }
+        
+                    let deleteBtn = document.createElement("button");
+                    deleteBtn.textContent = "Delete";
+                    deleteBtn.classList.add("delete-btn");
+                    deleteBtn.onclick = function () {
+                        newComment.remove();
+                        removeComment(savedComment);
+                    };
+        
+                    newComment.appendChild(deleteBtn);
+                    newComment.appendChild(commentContent);
+                    commentList.insertBefore(newComment, commentList.firstChild);
+        
+                    commentInput.value = "";
+                    imageInput.value = "";
+                    togglePostButton();
+                }
+            }
+        
+            function saveComment(comment) {
+                let comments = JSON.parse(localStorage.getItem("comments")) || [];
+                comments.push(comment);
+                localStorage.setItem("comments", JSON.stringify(comments));
+            }
+        
+            function loadComments() {
+                let comments = JSON.parse(localStorage.getItem("comments")) || [];
+                let commentList = document.getElementById("commentList");
+        
+                comments.forEach(comment => {
+                    let newComment = document.createElement("div");
+                    newComment.classList.add("comment");
+        
+                    let userImg = document.createElement("img");
+                    userImg.src = "images/Parama.jpg";
+                    userImg.alt = "User";
+                    newComment.appendChild(userImg);
+        
+                    let commentContent = document.createElement("div");
+        
+                    if (comment.text) {
+                        let textNode = document.createElement("p");
+                        textNode.textContent = comment.text;
+                        commentContent.appendChild(textNode);
+                    }
+        
+                    if (comment.image) {
+                        let imgElement = document.createElement("img");
+                        imgElement.src = comment.image;
+                        imgElement.classList.add("comment-image");
+                        commentContent.appendChild(imgElement);
+                    }
+        
+                    let deleteBtn = document.createElement("button");
+                    deleteBtn.textContent = "Delete";
+                    deleteBtn.classList.add("delete-btn");
+                    deleteBtn.onclick = function () {
+                        newComment.remove();
+                        removeComment(comment);
+                    };
+        
+                    newComment.appendChild(deleteBtn);
+                    newComment.appendChild(commentContent);
+                    commentList.insertBefore(newComment, commentList.firstChild);
+                });
+            }
+        
+            function removeComment(commentToRemove) {
+                let comments = JSON.parse(localStorage.getItem("comments")) || [];
+                let updatedComments = comments.filter(comment => 
+                    comment.text !== commentToRemove.text || comment.image !== commentToRemove.image
+                );
+                localStorage.setItem("comments", JSON.stringify(updatedComments));
+            }
+        </script>
+</body>
+</html> 
+ 
+ 
+ 
+ 
+ 
+          
+           
+
+  
+
+
+
+

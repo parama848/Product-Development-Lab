@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product details-RateMyBuy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--this is for star icon-->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f1e8;
+        text-align: center;
+    }
+    .container {
+        margin: 20px auto;
+        padding: 20px;
+        background: #eeeeee;
+        width: 80%;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .highlight {
+        color: blue;
+        font-weight: bold;
+    }
+    .selection-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    select {
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .forecasting-details-content {
+        border: 1px solid black;
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        font-size: 18px;
+        background: white;
+        border-radius: 10px;
+    }
+</style>
+
+<body>
+    <div class="header">
+
+        <div class="container">
+            <div class="navbar">
+                <div>
+                   
+                    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+                   <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie" background="transparent" speed="1" style="width: 80px; height: 80px" loop autoplay></dotlottie-player>
+                </div>
+
+                <nav class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-lg">
+                    <div class="nav-list" style="margin-top: 8px;">
+                        <ul id="MenuItems" class="flex space-x-6 text-lg font-semibold">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="product.html">Products</a></li>
+
+                        </ul>
+                    </div>
+                    <li><a href="account.html"><img src="images/profile-user.png" width="30px" height="30px"></a></li>
+                    <a href="cart.html"><img src="images/shopping-bag.png" width="30px" height="30px"></a>
+                    <a href="company.html"><img src="images/consumer-research.png" width="30px" height="30px"></a>
+                    <a href="chat.html"><img src="images/chat.png" width="35px" height="35px"></a>
+                    <a href="mail.html"><img src="images/email.png" width="30px" height="30px"></a>
+
+                </nav>
+
+                <!-- notification -->
+
+                <!-- notification -->
+
+            </div>
+        </div>
+
+
+        <!-- forecast details -->
+                
+        
+    <div class="header">
+        <div class="container">
+            <h2>Product Forecasting</h2>
+            <div class="selection-container">
+                <div>
+                    <label for="year">Year</label>
+                    <select id="year" onchange="updateData()">
+                        <option>2021</option>
+                        <option>2022</option>
+                        <option>2023</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="month">Month</label>
+                    <select id="month" onchange="updateData()">
+                        <option>January</option>
+                        <option>February</option>
+                        <option>March</option>
+                        <option>April</option>
+                        <option>May</option>
+                        <option>June</option>
+                        <option>July</option>
+                        <option>August</option>
+                        <option>September</option>
+                        <option>October</option>
+                        <option>November</option>
+                    </select>
+                </div>
+            </div>
+            <div class="forecasting-details-content" id="dataDisplay"></div>
+        </div>
+    </div>
+
+
+        <!-- forecast details -->
+
+
+
+        
+        <script>
+const data = {
+            "2025": {
+                "January": { sales: 574.25, stock: 500, discard: "5% Discount", price: 47.5, revenue: 27276.83 },
+                "February": { sales: 512.23, stock: 490, discard: "5% Discount", price: 47.5, revenue: 24331.1 },
+                "March": { sales: 559.25, stock: 450, discard: "5% Discount", price: 47.5, revenue: 26564.54 },
+                "April": { sales: 595.71, stock: 480, discard: "5% Discount", price: 47.5, revenue: 28296.23 },
+                "May": { sales: 649.23, stock: 510, discard: "5% Discount", price: 47.5, revenue: 30838.44 },
+                "June": { sales: 697.74, stock: 570, discard: "5% Discount", price: 47.5, revenue: 33142.8 },
+                "July": { sales: 748.73, stock: 620, discard: "No Discount", price: 50, revenue: 37436.79 },
+                "August": { sales: 729.93, stock: 670, discard: "No Discount", price: 50, revenue: 36496.55 },
+                "September": { sales: 770.89, stock: 650, discard: "No Discount", price: 50, revenue: 38544.6 },
+                "October": { sales: 803.12, stock: 690, discard: "No Discount", price: 50, revenue: 40155.93 },
+                "November": { sales: 853.88, stock: 720, discard: "No Discount", price: 50, revenue: 42694.22 }
+            }
+        };
+
+        function updateData() {
+            const year = document.getElementById("year").value;
+            const month = document.getElementById("month").value;
+            
+            if (data[year] && data[year][month]) {
+                const details = data[year][month];
+                document.getElementById("dataDisplay").innerHTML = `
+                    <p>Sales <span class="highlight">${details.sales}</span></p><br>
+                    <p>Stock import <span class="highlight">${details.stock}</span></p><br>
+                    <p>Discount Recommendation <span class="highlight">${details.discard}</span></p><br>
+                    <p>Recommended Price <span class="highlight">${details.price}</span></p><br>
+                    <p>Revenue <span class="highlight">Rs.${details.revenue}</span></p><br>
+                `;
+            } else {
+                document.getElementById("dataDisplay").innerHTML = `<p>No data available for the selected month and year.</p>`;
+            }
+        }
+
+        updateData();
+        </script>
+</body>
+
+
+</html>

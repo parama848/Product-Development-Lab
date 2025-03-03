@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Navbar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+            position: relative;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            width: 60%;
+            max-width: 500px;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+            color: black;
+        }
+        .search-bar img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .menu {
+            display: none;
+            flex-direction: column;
+            background-color: #444;
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            width: 180px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+        }
+        .menu-item img {
+            width: 30px;
+            height: 30px;
+        }
+        .menu-item span {
+            font-size: 16px;
+        }
+        .menu-item:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+        .hamburger {
+            font-size: 30px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+        .hamburger-container {
+            position: relative;
+            display: inline-block;
+        }
+        .hamburger-container:hover .menu {
+            display: flex;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            if (menu.style.display === "flex") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "flex";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">MyLogo</div>
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <!-- logo animation -->
+                <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+                <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie" background="transparent" speed="1" style="width: 40px; height: 40px" loop autoplay></dotlottie-player>
+                <!-- logo animation -->
+            </div>
+        </div>
+        <div class="hamburger-container">
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu" id="menu">
+                <a href="account.html" class="menu-item">
+                    <img src="images/profile-user.png" alt="Account">
+                    <span>Account</span>
+                </a>
+                <a href="chat.html" class="menu-item">
+                    <img src="images/chat.png" alt="Chat">
+                    <span>Chat</span>
+                </a>
+                <a href="cart.html" class="menu-item">
+                    <img src="images/shopping-bag.png" alt="Cart">
+                    <span>Cart</span>
+                </a>
+                <a href="mail.html" class="menu-item">
+                    <img src="images/email.png" alt="Notification">
+                    <span>Notification</span>
+                </a>
+                <a href="company.html" class="menu-item">
+                    <img src="images/consumer-research.png" alt="Company">
+                    <span>Company</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+        
+    <!-- home page -->
+
+    <div class="header" style="display: flex; margin-bottom: 200px; margin-top: 100px;" >
+
+        <div class="container">
+         
+            <div class="row">
+
+                <div class="col-2">
+
+
+                    <div class="form-container" style="width: 350px; height: 350px;">
+                        <div class="form-btn">
+                            <span style="margin-top: 20px; margin-right: 30px; font-size: 25px; color: black;">Sign
+                                In</span>
+
+                        </div>
+
+                        <form id="RegForm">
+
+                            <input type="email" placeholder="Email"
+                                style="width: 300px; padding: 20px; margin-bottom: 20px; border-radius: 30px; font-size: 15px;">
+                            <input type="password" placeholder="Password"
+                                style="width: 300px; padding: 20px; margin-bottom: 20px; border-radius: 30px; font-size: 15px;">
+                         <div style="margin-left: 30px;">
+                            <button type="submit" class="btn"
+                            style="width: 130px; padding: 12px; margin-bottom: 15px; border-radius: 30px; font-size: 15px; ">login</button>
+                        </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="col-2">
+                    <div class="animation-logo">
+
+                        <!-- Animation loby image -->
+                        <!-- <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+                        <dotlottie-player src="https://lottie.host/cb6f1857-ec5c-44d3-8813-bb21fd13c8e7/IRnr8tGVTk.lottie" background="transparent" speed="0.8" style="width: 800px; height: 530px" loop autoplay></dotlottie-player> -->
+                        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+                        <dotlottie-player src="https://lottie.host/279fee54-9177-4c24-9b4f-fe457be14cde/zy8CMwAXcR.lottie" background="transparent" speed="1" style="width: 700px; height: 430px" loop autoplay></dotlottie-player>
+                        <!-- Animation loby image -->
+
+                    </div>
+                    <!-- <img src="images/LOBBY1.png" width="550px" height="550px" class="floating-image"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- feature catagery -->
+
+    <div class="categry">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="images/large-image-shirt2.jpg"> <!-- img 1-->
+                </div>
+                <div class="col-3">
+                    <img src="images/categery1-pant-image.jpg" alt=""> <!-- img 2-->
+                </div>
+                <div class="col-3">
+
+                    <img src="images/categery2-pant-image.jpg" alt=""> <!-- img 3-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- feature catagery -->
+
+
+    <!-- featured products -->
+
+    <div class="small-container">
+        <h2 class="pt-titile">Shirt For Men</h2>
+        <div class="row">
+            <div class="col-4">
+                <a href="productdetails.html"><img src="images/product-1.jpg"></a>
+                <a href="productdetails.html"></a>
+                <h4>Red printed Tshirt</h4></a>
+
+                <p>Rs 299</p>
+
+            </div>
+
+            <div class="col-4">
+                <a href="product2.html"><img src="images/Hoodie.jpg"></a>
+                <h4>Black Hoodie</h4>
+                <div class="rating">
+
+                </div>
+                <p>Rs 999</p>
+
+            </div>
+
+            <div class="col-4">
+                <img src="images/formal shirt.jpg">
+                <h4>Formal Shirt</h4>
+
+                <p>Rs 799</p>
+            </div>
+
+
+            <div class="col-4">
+                <img src="images/coat.jpg">
+                <h4>Coat</h4>
+
+                <p>Rs 2999</p>
+            </div>
+        </div>
+        <h2 class="pt-titile">Pant For Men</h2>
+
+        <div class="row">
+            <div class="col-4">
+                <img src="images/carton-brown-1.jpg" height="300px">
+                <h4>Carton Brown</h4>
+
+                <p>Rs 499</p>
+            </div>
+
+            <div class="col-4">
+                <img src="images/polo-fit-3-black.jpg" height="300px">
+                <h4>Polo Fit Black</h4>
+
+                <p>Rs 499</p>
+            </div>
+
+            <div class="col-4">
+                <img src="images/polo-fit-3.jpg" height="300px">
+                <h4>Polo Fit Gray</h4>
+
+                <p>Rs 499</p>
+            </div>
+
+            <div class="col-4">
+                <img src="images/polo-fit-4.jpg" height="300px">
+                <h4>Polo Fit Light Green</h4>
+
+                <p>Rs 499</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <img src="images/Track-pant-1.jpg">
+                <h4>Track pant</h4>
+
+                <p>Rs 599</p>
+            </div>
+
+            <div class="col-4">
+                <img src="images/product-10.jpg">
+                <h4>Black shoe</h4>
+
+                <p>Rs 699</p>
+            </div>
+
+            <div class="col-4">
+                <img src="images/product-11.jpg">
+                <h4>White Shoe</h4>
+
+                <p>Rs 999</p>
+            </div>
+
+            <div class="col-4">
+                <img src="images/product-12.jpg">
+                <h4>Track pant</h4>
+
+                <p>Rs 399</p>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <!-- offered product -->
+    
+
+    <div class="offer">
+        <h2 class="pt-titile">Offer</h2>
+        <div class="small-container">
+            
+            <div class="row">
+                <div class="col-2">
+                    
+                    <img src="images/bulk-image.jpg" class="offer-img" width="590px" height="600px">
+                </div>
+
+
+                <div class="offer-container">
+                    <div>
+                        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+                        <dotlottie-player src="https://lottie.host/934a91f1-f342-4df9-b192-b95a83bc13fb/MMyMwtTpgq.lottie" background="transparent" speed="0.7" style="width: 370px; height: 300px" loop autoplay></dotlottie-player>
+                    </div>
+                    <!-- <img src="images/offer-Percentage.png" width="400px" height="320px"> -->
+
+
+                    <p style="color: black;">Get our best-selling product now at an exclusive price.</p>
+                    <p class="price" style="color: black;">Now Only: Rs 999 <mark
+                            style="background: rgba(222, 65, 8, 0.838); padding: 10px; border-radius: 30px;"><del>Rs
+                                2499</del></mark></p>
+                    <p class="timer" style="margin-top: 30px; color: black;">Offer Ends In: <span id="countdown"
+                            style="color: rgb(9, 9, 7); border: 1px solid yellow; padding: 10px; margin: 10px; background: rgba(240, 214, 17, 0.838); border-radius: 30px; margin-top: 30px;">00:00:00</span>
+                    </p>
+                    <a href="#" class="btn">Shop Now</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- offered products -->
+
+    <!-- testimonial -->
+
+    <div class="testimonial">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Ab quas eius recusandae excepturi deleniti labore minus incidunt porro,
+                        assumenda unde!</p>
+
+                    <img src="images/user-1.png" width="30px" height="30px">
+                    <h3>Rashmika</h3>
+                </div>
+                <div class="col-3">
+                    <!-- <i class="fa fa-quote-left"></i> -->
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Ab quas eius recusandae excepturi deleniti labore minus incidunt porro,
+                        assumenda unde!</p>
+
+                    <img src="images/user-2.png">
+                    <h3>John</h3>
+                </div>
+                <div class="col-3">
+                    <!-- <i class="fa fa-quote-left"></i> -->
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Ab quas eius recusandae excepturi deleniti labore minus incidunt porro,
+                        assumenda unde!</p>
+
+                    <img src="images/user-3.png">
+                    <h3>Luna</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- testimonial -->
+
+    <!-- brands -->
+
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="images/logo-godrej.png">
+                </div>
+                <div class="col-5">
+                    <img src="images/gpay">
+                </div>
+                <div class="col-5">
+                    <img src="images/logo-coca-cola.png">
+                </div>
+                <div class="col-5">
+                    <img src="images/logo-paypal.png">
+                </div>
+                <div class="col-5">
+                    <img src="images/logo-philips.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- brands -->
+
+    <!-- footer -->
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download our app</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png">
+                        <img src="images/app-store.png">
+                    </div>
+                </div>
+                <!-- <div class="footer-col-2">
+                    <img src="images/logo5.png" width="60px" height="60px">
+                    <p>Our Purpose Is To Sustainable Make the Plessure and Benefits of sports Accesible to the Many.</p>
+                </div> -->
+                <div class="footer-col-2">
+                    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+                   <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie" background="transparent" speed="1" style="width: 400px; height: 80px" loop autoplay></dotlottie-player>
+                   <p>Our Purpose Is To Sustainable Make the Plessure and Benefits of sports Accesible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupans</li>
+                        <li>Blog Post</li>
+                        <li>Returns Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2025 Our website.</p>
+        </div>
+    </div>
+    <!-- footer -->
+
+    <script>
+        function startCountdown(durationInSeconds) {
+            let timer = durationInSeconds;
+            const countdownElement = document.getElementById("countdown");
+
+            function updateTimer() {
+                const hours = Math.floor(timer / 3600);
+                const minutes = Math.floor((timer % 3600) / 60);
+                const seconds = timer % 60;
+                countdownElement.textContent =
+                    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+                if (timer > 0) {
+                    timer--;
+                    setTimeout(updateTimer, 1000);
+                } else {
+                    countdownElement.textContent = "Offer Expired!";
+                }
+            }
+            updateTimer();
+        }
+
+        startCountdown(7200); // Set countdown for 24 hours
+        // notification
+
+        function openMailPage() {
+            window.location.href = 'mail.html';
+        }
+    </script>
+    
+    
+    <!-- home page -->
+
+
+</body>
+</html>

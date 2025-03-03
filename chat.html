@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Chatbox</title>
+    <style>
+        /* normal style */
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f7fc;
+        }
+
+        .chatbox {
+            width: 1200px;
+            height: 600px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 30px;
+            max-width: 40%;
+        }
+
+        .message.user {
+            background-color: #141414;
+            align-self: flex-end;
+        }
+
+        .message.bot {
+            background-color: #fefdfd;
+            align-self: flex-start;
+            color: #0f1010;
+            /* border: 1px solid black; */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #fafafa;
+         
+
+        }
+
+        /* .input-container:focus{
+            outline: none;
+        } */
+
+        select {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+
+        }
+
+        select:focus {
+            outline: none;
+        }
+
+        select:hover {
+            border: 1px solid black;
+            border-radius: 30px;
+            padding: 20px;
+            align-self: flex-end;
+        }
+
+        button {
+            background: white;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid black;
+            margin-top: 30px;
+            color: rgb(12, 11, 11);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 10%;
+            align-self: flex-end;
+
+        }
+
+       
+
+        button:hover {
+            background-color: #0f1010;
+            color: #fefefe;
+
+        }
+
+        .chatbox .title {
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            background: black;
+            color: white;
+        }
+
+        /* normal style */
+
+        /* typing animation   */
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            font-style: italic;
+            color: gray;
+            margin: 5px 0;
+        }
+
+        .dot {
+            height: 8px;
+            width: 8px;
+            margin: 0 2px;
+            background-color: gray;
+            border-radius: 50%;
+            display: inline-block;
+            animation: typing 1.5s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes typing {
+            0% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        /* typing animation   */
+    </style>
+</head>
+
+<body>
+
+    <div class="chatbox">
+        <div class="title">
+            Chat Bot
+        </div>
+        <div class="messages" id="messages"></div>
+        <div class="input-container">
+            <select id="questionSelect">
+                <option value="" disabled selected>📊 Select a sales analysis question...</option>
+                <option value="analysis">📊 Generate an analysis report</option>
+                <option value="profit">💰 Company profit for January 2024</option>
+                <option value="mostSold">🏆 Most sold product</option>
+                <option value="leastDemand">📉 Least demanded product</option>
+                <option value="positiveReview">⭐ Most positively reviewed product</option>
+                <option value="negativeReview">❌ Most negatively reviewed product</option>
+            </select>
+            <button onclick="sendQuestion()">Ask</button>
+            <!-- <a href="index.html">
+                <button>Back to Home</button>
+            </a> -->
+
+        </div>
+    </div>
+
+
+
+    <script>
+        function botMessage(text) {
+            var messages = document.getElementById('messages');
+
+            // Remove typing indicator before showing response
+            var typingIndicator = document.getElementById('typing');
+            if (typingIndicator) typingIndicator.remove();
+
+            var botMessage = document.createElement('div');
+            botMessage.classList.add('message', 'bot');
+
+            // Replace **text** with styled span
+            // text = text.replace(/\*\*(.*?)\*\*/g, '<span style="background:black; color:white; padding:2px; border-radius:10px;">$1</span>');
+            text = text
+                .replace(/\*\*(.*?)\*\*/g, '<span style="color: blue; font-weight: bold;">$1</span>')  // Bold text (**text**)
+                .replace(/(\d+)/g, '<span style="color: green;">$1</span>')  // Numbers (1234)
+                .replace(/([₹$€£])/g, '<span style="color: orange; font-weight: bold;">$1</span>')  // Currency symbols (₹, $, €)
+                .replace(/#(\w+)/g, '<span style="color: purple; font-weight: bold;">#$1</span>');  // Hashtags (#tag)
+
+
+            botMessage.innerHTML = text;
+            messages.appendChild(botMessage);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function userMessage(text) {
+            var messages = document.getElementById('messages');
+            var userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user');
+            userMessage.textContent = text;
+            messages.appendChild(userMessage);
+        }
+
+        function showTypingIndicator() {
+            var messages = document.getElementById('messages');
+            var typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('typing-indicator');
+            typingIndicator.id = 'typing';
+            typingIndicator.innerHTML = 'Analysing please wait for few seconds <span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+            messages.appendChild(typingIndicator);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function sendQuestion() {
+            var select = document.getElementById('questionSelect');
+            var selectedValue = select.value;
+
+            if (!selectedValue) return;
+
+            userMessage(select.options[select.selectedIndex].text);
+
+            // Show typing effect before response
+            showTypingIndicator();
+
+            setTimeout(() => {
+                if (selectedValue === "analysis") {
+                    botMessage("Okay, please describe how I can assist you in analyzing the report.");
+                }
+                else if (selectedValue === "profit") {
+                    botMessage("During January 2024, your company made a profit of ₹45,895.");
+                }
+                else if (selectedValue === "mostSold") {
+                    botMessage("The **Red Printed T-shirt** is the most sold product. It remains the highest in demand.");
+                }
+                else if (selectedValue === "leastDemand") {
+                    botMessage("The **Brown Coat** had the least demand in January 2024, with the lowest sales volume.");
+                }
+                else if (selectedValue === "positiveReview") {
+                    botMessage("The **Black Hoodies** received the most positive reviews, with a **4.7-star rating**.");
+                }
+                else if (selectedValue === "negativeReview") {
+                    botMessage("The **Formal Shirt** received the most negative feedback due to fabric quality issues and fit problems.");
+                }
+            }, 2000); // Delay response for 2 seconds to simulate typing
+        }
+
+        // Initial bot message
+        window.onload = function () {
+            setTimeout(() => botMessage("Hello! How can I assist you today? Please choose a sales analysis question from the dropdown menu."), 500);
+        };
+    </script>
+
+</body>
+
+</html>

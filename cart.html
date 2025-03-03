@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart-RateMyBuy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--this is for star icon-->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="header">
+
+        <div class="container">
+            <div class="navbar">
+                <div>
+                    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+                   <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie" background="transparent" speed="1" style="width: 80px; height: 80px" loop autoplay></dotlottie-player>
+                </div>
+
+                <nav class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-lg">
+                    <div class="nav-list" style="margin-top: 8px;">
+                        <ul id="MenuItems" class="flex space-x-6 text-lg font-semibold">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="product.html">Products</a></li>
+                            <!-- <li><a href="company.html">Company Analysis</a></li> -->
+                            <!-- <li><a href="Contact">Contact</a></li> -->
+                            <!-- <div class="notification-icon" onclick="openMailPage()">📧</div> -->
+                        </ul>
+                    </div>
+                    <li><a href="account.html"><img src="images/profile-user.png" width="30px" height="30px"></a></li>
+                    <a href="cart.html"><img src="images/shopping-bag.png" width="30px" height="30px"></a>
+                    <a href="company.html"><img src="images/consumer-research.png" width="30px" height="30px"></a>
+                    
+                    <a href="chat.html"><img src="images/chat.png" width="35px" height="35px"></a>
+                    <a href="mail.html"><img src="images/email.png" width="30px" height="30px"></a>
+
+                </nav>
+
+                <!-- notification -->
+                
+                <!-- notification -->
+
+            </div>
+        </div>
+
+        <!-- cart items details -->
+
+        <div class="small-container cart-page" style="background: radial-gradient(#fff, #f3ecec);">
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr id="Pt-cart-1">
+                    <td>
+                        <div class="cart-info">
+                            <img src="images/buy-1.jpg">
+                            <div>
+                                <p>Red Printed Tshirt</p>
+                                <small>Price: Rs 299</small><br>
+
+                                <button onclick="removeItem(this)" class="remove-btn"
+                                    style="cursor: pointer;">Remove</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" id="quantity" min="1" value="1" onchange="updateSubtotal()"></td>
+                    <td id="subtotal">Rs 299</td>
+                </tr>
+                </tr>
+                
+        </div>
+    </div>
+
+
+
+    <!-- cart items details -->
+
+
+
+    <script>
+
+        function removeItem(button) {
+            // Get the row element (tr) of the clicked button
+            let row = button.closest("tr");
+
+            // Remove the row from the table
+            row.remove();
+
+        }
+        function updateSubtotal() {
+            let price = 299; // Price per item
+            let quantity = document.getElementById("quantity").value;
+            let subtotal = price * (quantity ? parseInt(quantity) : 0);
+            document.getElementById("subtotal").innerText = "Rs " + subtotal.toFixed(2);
+        }
+        updateSubtotal();
+
+    </script>
+</body>
+
+
+</html>
