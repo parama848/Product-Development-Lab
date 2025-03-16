@@ -10,353 +10,321 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<style>
-   
-    
-        .navbar div {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-            
-        .navbar div:hover {
-            background: #ddd;
-        }
-       
-         /* comment */
 
 
-         .checkbox-container {
-            display: flex;
-            justify-content: space-around;
-            background: #f0f0f0;
-            padding: 10px;
-        }
-
-        #show{
-            text-decoration: none;
-        }
-         /* comment */
-
-
-/* feedback */
-
-
-/* feedback */
-
-
-
-
-
-</style>
 
 <body>
-    <div class="header">
 
-        <div class="container">
-            <div class="navbar">
-                <div>
-                   
-                    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-                   <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie" background="transparent" speed="1" style="width: 80px; height: 80px" loop autoplay></dotlottie-player>
-                </div>
+    <!-- navigation -->
 
-                <nav class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-lg">
-                    <div class="nav-list" style="margin-top: 8px;">
-                        <ul id="MenuItems" class="flex space-x-6 text-lg font-semibold">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="product.html">Products</a></li>
-                        </ul>
-                    </div>
-                    <li><a href="account.html"><img src="images/profile-user.png" width="30px" height="30px"></a></li>
-                    <a href="cart.html"><img src="images/shopping-bag.png" width="30px" height="30px"></a>
-                    <a href="company.html"><img src="images/consumer-research.png" width="30px" height="30px"></a>
-                    <a href="chat.html"><img src="images/chat.png" width="35px" height="35px"></a>
-                    <a href="mail.html"><img src="images/email.png" width="30px" height="30px"></a>
-
-                </nav>
-
-                <!-- notification -->
-                
-                <!-- notification -->
-
+    <div class="navbar">
+        <a href="index.html" style="text-decoration: none;">
+            <div class="logo" style="display: flex; margin-bottom: 15px;">TrendView</div>
+        </a>
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <!-- search logo -->
+                <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                    type="module"></script>
+                <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie"
+                    background="transparent" speed="1" style="width: 40px; height: 40px" loop
+                    autoplay></dotlottie-player>
+                <!-- search logo -->
             </div>
         </div>
-
-        <!-- single product details -->
-
-        <div class="small-container single-product">
-            <div class="row">
-                <div class="col-2">
-                    <img src="images/gallery-1.jpg" width="100%" id="ProductImg" class="LargeImage">
-
-                    <div class="small-img-row">
-                        <div class="small-img-col">
-                            <img src="images/gallery-1.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="images/gallery-2.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="images/gallery-3.jpg" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="images/gallery-4.jpg" width="100%" class="small-img">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-2">
-                    <p>Home / T-Shirt</p>
-                    <h1>Red Printed T-Shirt by HRX</h1>
-                    <h4>Rs 299</h4>
-                    <select aria-placeholder="Select Size\">
-                        <option>Select Size</option>
-                        <option>XXL</option>
-                        <option>xL</option>
-                        <option>large</option>
-                        <option>Medium</option>
-                        <option>Small</option>
-                    </select>
-                    <input type="number" value="1">
-                    <!-- <div style="">
-                        <a href="cart.html">
-                        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-                        <dotlottie-player src="https://lottie.host/fbd15b9c-9bfc-47f8-a0ac-ed783a6ca72e/1wwrs0qLzB.lottie"  background="transparent" speed="0.8" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
-                    </a>
-                    </div> -->
-                    
-                    <!-- <a href="" class="btn" <button onclick="addToCart()" id="cartBody">Add To Cart</button></a>  -->
-                     <a href="cart.html" class="btn" onclick="addToCart()">Add To Cart</a> 
-                    <h3>Product Details <i class="fa fa-indent"></i></h3>
-                    <br>
-                    <p>Give your summer wardrop a style upgrade with the HRX Mens Active T-Shirt. Team it with a pair of
-                        shorts for your morning workout or a denims for an evening out with the guys.</p>
-                </div>
+        <div class="hamburger-container">
+            <div class="hamburger" onclick="toggleMenu()" style="display: flex; margin-bottom: 13px;">&#9776;</div>
+            <div class="menu" id="menu">
+                <a href="account.html" class="menu-item">
+                    <img src="images/profile-user.png" alt="Account">
+                    <span>Account</span>
+                </a>
+                <a href="chat.html" class="menu-item">
+                    <img src="images/chat.png" alt="Chat">
+                    <span>Chat</span>
+                </a>
+                <a href="cart.html" class="menu-item">
+                    <img src="images/shopping-bag.png" alt="Cart">
+                    <span>Cart</span>
+                </a>
+                <a href="mail.html" class="menu-item">
+                    <img src="images/email.png" alt="Notification">
+                    <span>Notification</span>
+                </a>
+                <a href="company.html" class="menu-item">
+                    <img src="images/consumer-research.png" alt="Company">
+                    <span>Company</span>
+                </a>
+                <a href="ForeCasting.html" class="menu-item">
+                    <img src="images/product forecasting.png" alt="Company">
+                    <span>Product Forecasting</span>
+                </a>
             </div>
-        </div>
-
-        <!-- single product details -->
-
-
-        <!-- product analysis -->
-        <div class="comment-box">
-            <div class="small-container">
-                <div class="row">
-                 
-                    <a href="http://127.0.0.1:5000/"><h2 style="text-align: center;" id="show">Product Feedback</h2></a>
-                  <a href="Analysis.html"><button><h2 style="text-align: center;" id="show">Product Analysis</h2></button> </a> 
-                  <!-- <a href="company.html"><button><h2 style="text-align: center;" id="show">Company Analysis</h2></button> </a>  -->
-                  
-                </div>
-                <div class="ct-box">
-                    
-                    <!-- comment -->
-        <!-- product analysis -->
-        <!-- title -->
-        <div class="small-container">
-            <div class="row row-2">
-                <h2>Related Products</h2>
-                <p>View More</p>
-            </div>
-        </div>
-
-        <!-- title -->
-
-
-        <div class="small-container">
-
-            <div class="row">
-                <div class="col-4">
-                    <img src="images/Track-pant-1.jpg">
-                    <h4>Watch</h4>
-                   
-                    <p>Rs 599</p>
-                </div>
-
-                <div class="col-4">
-                    <img src="images/product-10.jpg">
-                    <h4>Black shoe</h4>
-                 
-                    <p>Rs 699</p>
-                </div>
-
-                <div class="col-4">
-                    <img src="images/product-11.jpg">
-                    <h4>White Shoe</h4>
-                    
-                    <p>Rs 999</p>
-                </div>
-
-                <div class="col-4">
-                    <img src="images/product-12.jpg">
-                    <h4>Track pant</h4>
-                    
-                    <p>Rs 399</p>   
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- footer -->
-
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download our app</h3>
-                    <p>Download App for Android and ios mobile phone.</p>
-                    <div class="app-logo">
-                        <img src="images/play-store.png">
-                        <img src="images/app-store.png">
-                    </div>
-                </div>
-                <!-- <div class="footer-col-2">
-                    <img src="images/logo5.png" width="60px" height="60px">
-                    <p>Our Purpose Is To Sustainable Make the Plessure and Benefits of sports Accesible to the Many.</p>
-                </div> -->
-                <div class="footer-col-2">
-                    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-                   <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie" background="transparent" speed="1" style="width: 400px; height: 80px" loop autoplay></dotlottie-player>
-                   <p>Our Purpose Is To Sustainable Make the Plessure and Benefits of sports Accesible to the Many.</p>
-                </div>
-                <div class="footer-col-3">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupans</li>
-                        <li>Blog Post</li>
-                        <li>Returns Policy</li>
-                        <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h3>Follow us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                        <li>Instagram</li>
-                        <li>Youtube</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright">Copyright 2025 Our website.</p>
         </div>
     </div>
-    <!-- footer -->
+    <!-- navigation -->
 
-        <!-- product gallery -->
+    <!-- single product details -->
 
-        <script>
-            var ProductImg = document.getElementById("ProductImg");
-            var SmallImg = document.getElementsByClassName("small-img");
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="images/gallery-1.jpg" width="100%" id="ProductImg" class="LargeImage">
 
-            SmallImg[0].onclick = function () {
-                ProductImg.src = SmallImg[0].src;
-            }
-            SmallImg[1].onclick = function () {
-                ProductImg.src = SmallImg[1].src;
-            }
-            SmallImg[2].onclick = function () {
-                ProductImg.src = SmallImg[2].src;
-            }
-            SmallImg[3].onclick = function () {
-                ProductImg.src = SmallImg[3].src;
-            }
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="images/gallery-1.jpg" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="images/gallery-2.jpg" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="images/gallery-3.jpg" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="images/gallery-4.jpg" width="100%" class="small-img">
+                    </div>
+                </div>
 
-            // add carts
+            </div>
+            <div class="col-2">
+                <p>Home / T-Shirt</p>
+                <h1>Red Printed T-Shirt by HRX</h1>
+                <h4>Rs 299</h4>
+                <select aria-placeholder="Select Size\">
+                    <option>Select Size</option>
+                    <option>XXL</option>
+                    <option>xL</option>
+                    <option>large</option>
+                    <option>Medium</option>
+                    <option>Small</option>
+                </select>
+                <input type="number" value="1">
 
-            function addToCart() {
-                let table = document.getElementById("cartBody");
-                let newRow = document.createElement("tr");
-              
+                <a href="cart.html" class="btn" onclick="addToCart()">Add To Cart</a>
+                <h3>Product Details <i class="fa fa-indent"></i></h3>
+                <br>
+                <p>Give your summer wardrop a style upgrade with the HRX Mens Active T-Shirt. Team it with a pair of
+                    shorts for your morning workout or a denims for an evening out with the guys.</p>
+            </div>
+        </div>
+    </div>
 
-                table.appendChild(newRow);
-                updateTotal();
-            }
+    <!-- single product details -->
 
-            function updateSubtotal(input) {
-                let price = 50;
-                let quantity = input.value;
-                let subtotalCell = input.parentElement.nextElementSibling;
-                let subtotal = price * (quantity ? parseInt(quantity) : 0);
-                subtotalCell.innerText = "$" + subtotal.toFixed(2);
 
-                updateTotal();
-            }
+    <!-- product analyze, feedback -->
+    <div class="comment-box">
+        <div class="small-container">
+            <div class="row">
+                <a href="http://127.0.0.1:5000/" style="text-decoration: none;">
+                    <h2 style="text-align: center;" id="show">Product Feedback</h2>
+                </a>
+                <a href="Analysis.html"><button>
+                        <h2 style="text-align: center;" id="show">Product Analysis</h2>
+                    </button> </a>
+            </div>
+            <div class="ct-box">
+                <div class="small-container">
+                    <div class="row row-2">
+                        <h2>Related Products</h2>
+                        <p>View More</p>
+                    </div>
+                </div>
 
-            function removeItem(button) {
-                let row = button.closest("tr");
-                row.remove();
-                updateTotal();
-            }
+                <!-- product analyze, feedback -->
 
-            function updateTotal() {
-                let total = 0;
-                let subtotalCells = document.querySelectorAll(".subtotal");
-                subtotalCells.forEach(cell => {
-                    total += parseFloat(cell.innerText.replace("$", ""));
-                });
+    <!-- related products -->
+                <div class="small-container">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="images/Track-pant-1.jpg">
+                            <h4>Watch</h4>
+                            <p>Rs 599</p>
+                        </div>
+                        <div class="col-4">
+                            <img src="images/product-10.jpg">
+                            <h4>Black shoe</h4>
+                            <p>Rs 699</p>
+                        </div>
+                        <div class="col-4">
+                            <img src="images/product-11.jpg">
+                            <h4>White Shoe</h4>
+                            <p>Rs 999</p>
+                        </div>
+                        <div class="col-4">
+                            <img src="images/product-12.jpg">
+                            <h4>Track pant</h4>
+                            <p>Rs 399</p>
+                        </div>
+                    </div>
+                </div>
+<!-- related products -->
 
-                document.getElementById("totalAmount").innerText = "$" + total.toFixed(2);
-            }
-            //comment box
-            document.getElementById("commentInput").addEventListener("input", togglePostButton);
-        document.getElementById("imageInput").addEventListener("change", togglePostButton);
 
-        function togglePostButton() {
-            let commentText = document.getElementById("commentInput").value.trim();
-            let imageFile = document.getElementById("imageInput").files.length > 0;
-            document.getElementById("postBtn").disabled = !(commentText || imageFile);
-        }
+<!-- footer -->
 
-        function postComment() {
-            let commentInput = document.getElementById("commentInput");
-            let commentText = commentInput.value.trim();
-            let imageInput = document.getElementById("imageInput");
-            let imageFile = imageInput.files[0];
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download our app</h3>
+                <p>Download App for Android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="images/play-store.png">
+                    <img src="images/app-store.png">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                    type="module"></script>
+                <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie"
+                    background="transparent" speed="1" style="width: 400px; height: 80px" loop
+                    autoplay></dotlottie-player>
+                <p>Our Purpose Is To Sustainable Make the Plessure and Benefits of sports Accesible to the Many.</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupans</li>
+                    <li>Blog Post</li>
+                    <li>Returns Policy</li>
+                    <li>Join Affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>Youtube</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2025 Our website.</p>
+    </div>
+</div>
+<!-- footer -->
 
-            if (commentText !== "" || imageFile) {
-                let commentList = document.getElementById("commentList");
-                let newComment = document.createElement("div");
-                newComment.classList.add("comment");
-                
-                let userImg = document.createElement("img");
-                userImg.src = "images/Parama.jpg";
-                userImg.alt = "User";
-                newComment.appendChild(userImg);
-                
-                let commentContent = document.createElement("div");
-                if (commentText !== "") {
-                    let textNode = document.createElement("p");
-                    textNode.textContent = commentText;
-                    commentContent.appendChild(textNode);
-                }
-                
-                if (imageFile) {
-                    let imgElement = document.createElement("img");
-                    imgElement.src = URL.createObjectURL(imageFile);
-                    imgElement.classList.add("comment-image");
-                    commentContent.appendChild(imgElement);
-                }
-                
-                let deleteBtn = document.createElement("button");
-                deleteBtn.textContent = "Delete";
-                deleteBtn.classList.add("delete-btn");
-                deleteBtn.onclick = function() { newComment.remove(); };
-                newComment.appendChild(deleteBtn);
-                
-                newComment.appendChild(commentContent);
-                commentList.insertBefore(newComment, commentList.firstChild);
-                commentInput.value = "";
-                imageInput.value = "";
-                togglePostButton();
-            }
-        }
-        // feedback
-        // feedback
-    
-        </script>
+               
+
+                <script>
+                    var ProductImg = document.getElementById("ProductImg");
+                    var SmallImg = document.getElementsByClassName("small-img");
+
+                    SmallImg[0].onclick = function () {
+                        ProductImg.src = SmallImg[0].src;
+                    }
+                    SmallImg[1].onclick = function () {
+                        ProductImg.src = SmallImg[1].src;
+                    }
+                    SmallImg[2].onclick = function () {
+                        ProductImg.src = SmallImg[2].src;
+                    }
+                    SmallImg[3].onclick = function () {
+                        ProductImg.src = SmallImg[3].src;
+                    }
+
+                    // add carts
+
+                    function addToCart() {
+                        let table = document.getElementById("cartBody");
+                        let newRow = document.createElement("tr");
+
+
+                        table.appendChild(newRow);
+                        updateTotal();
+                    }
+
+                    function updateSubtotal(input) {
+                        let price = 50;
+                        let quantity = input.value;
+                        let subtotalCell = input.parentElement.nextElementSibling;
+                        let subtotal = price * (quantity ? parseInt(quantity) : 0);
+                        subtotalCell.innerText = "$" + subtotal.toFixed(2);
+
+                        updateTotal();
+                    }
+
+                    function removeItem(button) {
+                        let row = button.closest("tr");
+                        row.remove();
+                        updateTotal();
+                    }
+
+                    function updateTotal() {
+                        let total = 0;
+                        let subtotalCells = document.querySelectorAll(".subtotal");
+                        subtotalCells.forEach(cell => {
+                            total += parseFloat(cell.innerText.replace("$", ""));
+                        });
+
+                        document.getElementById("totalAmount").innerText = "$" + total.toFixed(2);
+                    }
+                    //comment box
+                    document.getElementById("commentInput").addEventListener("input", togglePostButton);
+                    document.getElementById("imageInput").addEventListener("change", togglePostButton);
+
+                    function togglePostButton() {
+                        let commentText = document.getElementById("commentInput").value.trim();
+                        let imageFile = document.getElementById("imageInput").files.length > 0;
+                        document.getElementById("postBtn").disabled = !(commentText || imageFile);
+                    }
+
+                    function postComment() {
+                        let commentInput = document.getElementById("commentInput");
+                        let commentText = commentInput.value.trim();
+                        let imageInput = document.getElementById("imageInput");
+                        let imageFile = imageInput.files[0];
+
+                        if (commentText !== "" || imageFile) {
+                            let commentList = document.getElementById("commentList");
+                            let newComment = document.createElement("div");
+                            newComment.classList.add("comment");
+
+                            let userImg = document.createElement("img");
+                            userImg.src = "images/Parama.jpg";
+                            userImg.alt = "User";
+                            newComment.appendChild(userImg);
+
+                            let commentContent = document.createElement("div");
+                            if (commentText !== "") {
+                                let textNode = document.createElement("p");
+                                textNode.textContent = commentText;
+                                commentContent.appendChild(textNode);
+                            }
+
+                            if (imageFile) {
+                                let imgElement = document.createElement("img");
+                                imgElement.src = URL.createObjectURL(imageFile);
+                                imgElement.classList.add("comment-image");
+                                commentContent.appendChild(imgElement);
+                            }
+
+                            let deleteBtn = document.createElement("button");
+                            deleteBtn.textContent = "Delete";
+                            deleteBtn.classList.add("delete-btn");
+                            deleteBtn.onclick = function () { newComment.remove(); };
+                            newComment.appendChild(deleteBtn);
+
+                            newComment.appendChild(commentContent);
+                            commentList.insertBefore(newComment, commentList.firstChild);
+                            commentInput.value = "";
+                            imageInput.value = "";
+                            togglePostButton();
+                        }
+                    }
+
+                    //navigation
+                    function toggleMenu() {
+                        var menu = document.getElementById("menu");
+                        menu.classList.toggle("menu-visible");
+                    }
+
+                </script>
 </body>
 
 

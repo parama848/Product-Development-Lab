@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Chatbox</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         /* normal style */
 
         body {
             font-family: Arial, sans-serif;
-            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
             background-color: #f4f7fc;
         }
 
@@ -25,7 +24,9 @@
             border: 1px solid #ddd;
             display: flex;
             flex-direction: column;
-            border: 1px solid black;
+            border: 1px solid rgb(5, 6, 6);
+            margin-left: 140px;
+            margin-top: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
         }
@@ -48,16 +49,16 @@
         }
 
         .message.user {
-            background-color: #141414;
+            background-color: rgb(4, 5, 5);
             align-self: flex-end;
         }
 
         .message.bot {
             background-color: #fefdfd;
             align-self: flex-start;
-            color: #0f1010;
+            color: rgb(0, 0, 0);
             /* border: 1px solid black; */
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 0 4px 8px 0 rgb(7, 7, 8);
         }
 
         .input-container {
@@ -89,7 +90,7 @@
         }
 
         select:hover {
-            border: 1px solid black;
+            border: 1px solid rgb(7, 8, 8);
             border-radius: 30px;
             padding: 20px;
             align-self: flex-end;
@@ -99,9 +100,9 @@
             background: white;
             padding: 10px;
             margin-top: 10px;
-            border: 1px solid black;
+            border: 1px solid rgb(0, 0, 0);
             margin-top: 30px;
-            color: rgb(12, 11, 11);
+            color: rgb(3, 4, 4);
             border-radius: 30px;
             cursor: pointer;
             font-size: 18px;
@@ -113,7 +114,7 @@
        
 
         button:hover {
-            background-color: #0f1010;
+            background-color: rgb(9, 9, 9);
             color: #fefefe;
 
         }
@@ -122,7 +123,7 @@
             padding: 20px;
             text-align: center;
             font-size: 20px;
-            background: black;
+            background: rgb(8, 8, 8);
             color: white;
         }
 
@@ -175,6 +176,56 @@
 </head>
 
 <body>
+     <!-- navigation -->
+
+   <div class="navbar">
+    <a href="index.html" style="text-decoration: none;">
+        <div class="logo" style="display: flex; margin-bottom: 15px;">TrendView</div>
+    </a>
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <!-- search logo -->
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                type="module"></script>
+            <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie"
+                background="transparent" speed="1" style="width: 40px; height: 40px" loop
+                autoplay></dotlottie-player>
+            <!-- search logo -->
+        </div>
+    </div>
+    <div class="hamburger-container">
+        <div class="hamburger" onclick="toggleMenu()" style="display: flex; margin-bottom: 13px;">&#9776;</div>
+        <div class="menu" id="menu">
+            <a href="account.html" class="menu-item">
+                <img src="images/profile-user.png" alt="Account">
+                <span>Account</span>
+            </a>
+            <a href="chat.html" class="menu-item">
+                <img src="images/chat.png" alt="Chat">
+                <span>Chat</span>
+            </a>
+            <a href="cart.html" class="menu-item">
+                <img src="images/shopping-bag.png" alt="Cart">
+                <span>Cart</span>
+            </a>
+            <a href="mail.html" class="menu-item">
+                <img src="images/email.png" alt="Notification">
+                <span>Notification</span>
+            </a>
+            <a href="company.html" class="menu-item">
+                <img src="images/consumer-research.png" alt="Company">
+                <span>Company</span>
+            </a>
+            <a href="ForeCasting.html" class="menu-item">
+                <img src="images/product forecasting.png" alt="Company">
+                <span>Product Forecasting</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- navigation -->
+
 
     <div class="chatbox">
         <div class="title">
@@ -281,6 +332,13 @@
         window.onload = function () {
             setTimeout(() => botMessage("Hello! How can I assist you today? Please choose a sales analysis question from the dropdown menu."), 500);
         };
+
+          //navigation
+          function toggleMenu() {
+                        var menu = document.getElementById("menu");
+                        menu.classList.toggle("menu-visible");
+                    }
+
     </script>
 
 </body>

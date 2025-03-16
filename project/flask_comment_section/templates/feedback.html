@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comment Section</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
+    
 </head>
 <style>
     body {
@@ -17,8 +17,6 @@
     }
 
     .comment-box {
-        font-family: 'Poppins', sans-serif;
-        /* max-width: 500px; */
         width: 100%;
         height: 700px;
         margin: auto;
@@ -30,11 +28,14 @@
 
     .comment {
         margin-bottom: 10px;
-        padding: 5px;
+        padding: 10px;
         border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-   .btn button {
+    .btn button, .delete-btn {
         padding: 10px;
         width: 150px;
         border-radius: 30px;
@@ -42,39 +43,51 @@
         color: black;
         outline: none;
         transition: transform 0.5s;
+        cursor: pointer;
     }
-   
 
-    button:hover {
+    button:hover, .delete-btn:hover {
         transition: 0.5s;
         background: rgb(0, 0, 0);
         color: rgb(252, 249, 249);
-        
     }
+
+    .delete-btn {
+        background-color: rgb(46, 44, 44);
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 60px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+   
 </style>
 
 <body>
 
-    <div class="container" style="display: flex;  font-family: 'Poppins',sans-serif;">
-        <div class="comment-box" style="width: 80%; height: 100%; ">
+
+
+    <!-- modified -->
+     
+    <div class="container" style="display: flex; font-family: 'Poppins', sans-serif;">
+        <div class="comment-box" style="width: 80%; height: 100%;">
             <h2>Product Feedbacks</h2>
             <input type="text" id="name" placeholder="Your Name" required
                 style="padding: 10px; border-radius: 30px; outline: none;"><br><br>
-            <textarea id="text" placeholder="Your Comment" required 
-                style="padding: 15px; width: 80%; border-radius: 10px; outline: none;  font-family: 'Poppins',sans-serif;"></textarea>
-           
-            
-            <div class="btn">
-                <button onclick="addComment()">Submit</button>
+            <div class="row" style="display: flex; justify-content: space-between; align-items: center; margin-left: 180px;">
+                <textarea id="text" placeholder="Your Comment" required 
+                    style="padding: 15px; width: 70%; border-radius: 10px; outline: none; font-family: 'Poppins', sans-serif;"></textarea>
+                <button onclick="addComment()" style="padding: 17px; border-radius: 10px; background-color: #007BFF; color: white; border: none; cursor: pointer; margin-right: 140px; position: fixed; right:  160px;">
+                    Submit
+                </button>
             </div>
-
-            <button onclick="downloadExcel()">Download Comments</button>
             <h3>Comments:</h3>
             <div id="comments"></div>
         </div>
     </div>
-
-
+    
+    <!-- modified -->
 
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
     <script>
@@ -82,7 +95,12 @@
             const response = await fetch('/comments');
             const data = await response.json();
             document.getElementById('comments').innerHTML = data.map(c =>
-                ` <div class="comment"><strong>${c.name}</strong>: ${c.text} <br><small>${c.timestamp}</small></div>`
+                `<div class="comment">
+                    <div>
+                        <strong>${c.name}</strong>: ${c.text} <br><small>${c.timestamp}</small>
+                    </div>
+                    <button class="delete-btn" onclick="deleteComment('${c.id}')">Delete</button>
+                </div>`
             ).join('');
         }
 
@@ -101,14 +119,18 @@
             fetchComments();
         }
 
+        async function deleteComment(id) {
+            if (!confirm("Are you sure you want to delete this comment?")) return;
+
+            await fetch(`/comments/${id}`, { method: 'DELETE' });
+            fetchComments();
+        }
+
         function downloadExcel() {
             window.location.href = '/download_excel';
         }
 
         fetchComments();
-
-
     </script>
 </body>
-
 </html>

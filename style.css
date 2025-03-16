@@ -5,101 +5,145 @@
     box-sizing: border-box;
     
 }
-body{
- 
- background:radial-gradient( rgb(227, 229, 230), rgb(245, 232, 213));
- 
+
+.swiper {
+    width: 1350px;
+    height: 350px;
+    margin-bottom: 40px;
+    margin: 50px;
+    border-radius: 5px;
+    
+}
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-
-/* part 1 */
-
+/* navigation */
+body {
+    
+    font-family: Arial, sans-serif;
+}
+/* Navbar Styling */
 .navbar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    position: sticky;
-    top: 0;
-}
-
-nav {
-    flex: 1;
-    text-align: right;
-    margin-left: 600px;
-    display: flex;
-    gap: 20px;
-    list-style: none;
-    top: 60px;
-
-
-}
-
-
-.nav li {
+    background-color: rgb(206, 231, 233);
+    padding: 10px 20px;
     position: relative;
-
-
+    overflow: visible;
+    /* Ensure menu is not clipped */
+    z-index: 1000;
+    position: sticky; 
+    top: 0px;
+    /* Higher than background */
 }
 
-nav ul {
-    display: inline-block;
-    list-style: none;
-
-}
-
-nav ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-/* a{
-    text-decoration: none;
-    color: #555;
-} */
-
-nav a {
-    text-decoration: none;
-    color: rgb(115, 103, 103);
-    font-size: 18px;
-    font-weight: 600;
-    padding: 10px 0;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-
-}
-
-nav a:hover {
-    color: black;
-    transition-duration: 0.5s;
-}
-
-
+/* Logo */
 .logo {
-    position: sticky;
-    top: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(129, 62, 223);
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    border-radius: 10px;
-    background-color: black;
-    transition: all 0.3s ease-in-out;
-    transform: translateX(-50%);
+/* Search Bar */
+.search-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 }
 
-nav a:hover::after {
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 60%;
+    max-width: 500px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
     width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    color: black;
 }
 
-p {
-    color: #555;
+.search-bar img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
+
+/* Menu Styling */
+.menu {
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 65px;
+    right: 0px;
+    width: 200px;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1001;
+    /* Higher than background */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Menu Items */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: rgb(46, 15, 47);
+    text-decoration: none;
+}
+
+.menu-item img {
+    width: 30px;
+    height: 30px;
+}
+
+.menu-item span {
+    font-size: 16px;
+}
+
+.menu-item:hover {
+    background-color: rgb(181, 226, 229);
+    border-radius: 5px;
+    color: white;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    font-size: 30px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(11, 11, 11);
+    z-index: 1100;
+}
+
+.hamburger-container {
+    position: relative;
+    display: inline-block;
+    z-index: 1100;
+}
+
+/* Show Menu when active */
+.menu-visible {
+    display: flex !important;
+}
+/* navigation */
+
+/* part 1 */
 
 .container {
     max-width: 1300px;
@@ -152,13 +196,68 @@ p {
 
 .btn:hover {
     /* background: rgb(241, 224, 198); */
-    background-color:rgb(109, 21, 196);
-            
+    background-color:rgb(13, 14, 14);
+    
     color:white ;
     
 }
 
+/* .header{
+    background-image: url('images/LobbyC.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding: 50px 0; / 
 
+} */
+
+
+
+
+.header2 {
+    position: relative;
+    padding: 50px 0;      
+    overflow: hidden;
+    height: 100vh;
+    /* margin-top: 30px; */
+}
+
+.header2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: url('images/Mega\ sale\ img-1.jpg'); /* Replace with actual background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 100%; /* Adjust this value to control opacity */
+    z-index: -1; /* Ensures it stays behind all content */
+    height: 100vh;
+}
+.header {
+    position: relative;
+    padding: 50px 0;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: url('images/lobbyF.jpg'); /* Replace with actual background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 20%; /* Adjust this value to control opacity */
+    z-index: -1; /* Ensures it stays behind all content */
+    height: 100vh;
+}
 
 .header .row {
     margin-top: 10px;
@@ -193,10 +292,6 @@ p {
 /* part 2 */
 
 
-.categry {
-    margin: 70px;
-
-}
 
 .col-3 {
     flex-basis: 30%;
@@ -216,6 +311,7 @@ p {
     padding-right: 25px;
 
 }
+
 
 /* image flip */
 .categry .col-3 {
@@ -275,12 +371,12 @@ p {
     margin: 0 auto 80px;
     position: relative;
     line-height: 40px;
-    color: #130b0b;
+    color: rgb(109, 21, 196);
 }
 
 .pt-titile::after {
     content: '';
-    background: #78706f;
+    background: rgb(183, 144, 222);
     width: 80px;
     height: 5px;
     border-radius: 5px;
@@ -332,12 +428,28 @@ h4 {
 
 /* part4 */
 
+
 .offer {
-    background: radial-gradient(#fff, #f3ecec);
-    margin-top: 80px;
-    padding: 30px 0;
-    margin-bottom: 50px;
+    position: relative;
+    padding: 50px 0;
+    overflow: hidden;
 }
+
+.offer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/offer1.jpg'); /* Replace with actual background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 70%; /* Adjust this value to control opacity */
+    z-index: -1; /* Ensures it stays behind all content */
+}
+
 
 .col-2 .offer-img {
     padding: 50px;

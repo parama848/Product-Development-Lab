@@ -1,67 +1,155 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inbox - Product Alerts</title>
+    <title>Product Alert Notifications</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f4f4f4;
             text-align: center;
+        
         }
-        .container {
-            width: 60%;
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 80%;
             margin: 20px auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        .mail-item {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-            margin: 10px;
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
         }
-        .mail-item:last-child {
-            border-bottom: none;
+        th {
+            background-color: #333;
+            color: white;
         }
-        .positive {
-            background-color: #d4edda; /* Light green */
-            color: #155724;
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
-        .negative {
-            background-color: #f8d7da; /* Light red */
-            color: #721c24;
+        .alert {
+            color: red;
+            font-weight: bold;
         }
+        .notification{
+            margin-top: 90px;
+        }
+        
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Inbox - Product Alerts</h2>
-        <div class="mail-item">Your Red printed t-shirt has 0 sales in the last 3 months.</div>
-        <div class="mail-item">Your Blue jeans have very low sales performance.</div>
-        <div class="mail-item">Your Black shoes are out of stock but no new orders.</div>
-        <div class="mail-item">Your White hoodie has been returned multiple times due to defects.</div>
-        <div class="mail-item">Your Green cap has not been viewed in the last 60 days.</div>
-        <div class="mail-item">Your Yellow sneakers are receiving negative reviews.</div>
-        <div class="mail-item">Your Brown leather jacket has only 2 units left in stock.</div>
+
+     <!-- navigation -->
+
+   <div class="navbar">
+    <a href="index.html" style="text-decoration: none;">
+        <div class="logo" style="display: flex; margin-bottom: 15px;">TrendView</div>
+    </a>
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <!-- search logo -->
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                type="module"></script>
+            <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie"
+                background="transparent" speed="1" style="width: 40px; height: 40px" loop
+                autoplay></dotlottie-player>
+            <!-- search logo -->
+        </div>
     </div>
+    <div class="hamburger-container">
+        <div class="hamburger" onclick="toggleMenu()" style="display: flex; margin-bottom: 13px;">&#9776;</div>
+        <div class="menu" id="menu">
+            <a href="account.html" class="menu-item">
+                <img src="images/profile-user.png" alt="Account">
+                <span>Account</span>
+            </a>
+            <a href="chat.html" class="menu-item">
+                <img src="images/chat.png" alt="Chat">
+                <span>Chat</span>
+            </a>
+            <a href="cart.html" class="menu-item">
+                <img src="images/shopping-bag.png" alt="Cart">
+                <span>Cart</span>
+            </a>
+            <a href="mail.html" class="menu-item">
+                <img src="images/email.png" alt="Notification">
+                <span>Notification</span>
+            </a>
+            <a href="company.html" class="menu-item">
+                <img src="images/consumer-research.png" alt="Company">
+                <span>Company</span>
+            </a>
+            <a href="ForeCasting.html" class="menu-item">
+                <img src="images/product forecasting.png" alt="Company">
+                <span>Product Forecasting</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- navigation -->
+
+
+<div class="notification">
+    <h2>🚨 Product Alert Notifications 🚨</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Issue Category</th>
+                <th>Total Complaints (This Week)</th>
+                <th>Alert Status</th>
+            </tr>
+        </thead>
+        <tbody id="alertTableBody">
+            <!-- Data will be inserted dynamically -->
+        </tbody>
+    </table>
+</div>
 
     <script>
-        document.querySelectorAll('.mail-item').forEach(item => {
-            let text = item.textContent.toLowerCase();
-            if (text.includes('negative') || text.includes('low sales') || text.includes('out of stock') || 
-                text.includes('returned') || text.includes('not been viewed') || text.includes('0 sales')) {
-                item.classList.add('negative');
-            } else {
-                item.classList.add('positive');
-            }
-        });
+        // Sample data
+        const alertData = [
+            { productID: "P123", issue: "Delivery Issue", complaints: 12 },
+            { productID: "P125", issue: "Payment Issue", complaints: 9 },
+            { productID: "P127", issue: "Product Quality", complaints: 15 },
+            { productID: "P130", issue: "Pricing Issue", complaints: 11 },
+            { productID: "P135", issue: "Return Issue", complaints: 14 }
+        ];
+
+        // Function to populate table
+        function populateAlerts() {
+            const tableBody = document.getElementById("alertTableBody");
+            alertData.forEach(alert => {
+                let row = `<tr>
+                    <td>${alert.productID}</td>
+                    <td>${alert.issue}</td>
+                    <td>${alert.complaints}</td>
+                    <td class="alert">ALERT 🚨</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Load alerts when page loads
+        window.onload = populateAlerts;
+
+
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("menu-visible");
+        }
     </script>
+
 </body>
 </html>

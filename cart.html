@@ -12,40 +12,55 @@
 </head>
 
 <body>
-    <div class="header">
+    <!-- navigation -->
 
-        <div class="container">
-            <div class="navbar">
-                <div>
-                    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-                   <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie" background="transparent" speed="1" style="width: 80px; height: 80px" loop autoplay></dotlottie-player>
-                </div>
-
-                <nav class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-lg">
-                    <div class="nav-list" style="margin-top: 8px;">
-                        <ul id="MenuItems" class="flex space-x-6 text-lg font-semibold">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="product.html">Products</a></li>
-                            <!-- <li><a href="company.html">Company Analysis</a></li> -->
-                            <!-- <li><a href="Contact">Contact</a></li> -->
-                            <!-- <div class="notification-icon" onclick="openMailPage()">📧</div> -->
-                        </ul>
-                    </div>
-                    <li><a href="account.html"><img src="images/profile-user.png" width="30px" height="30px"></a></li>
-                    <a href="cart.html"><img src="images/shopping-bag.png" width="30px" height="30px"></a>
-                    <a href="company.html"><img src="images/consumer-research.png" width="30px" height="30px"></a>
-                    
-                    <a href="chat.html"><img src="images/chat.png" width="35px" height="35px"></a>
-                    <a href="mail.html"><img src="images/email.png" width="30px" height="30px"></a>
-
-                </nav>
-
-                <!-- notification -->
-                
-                <!-- notification -->
-
-            </div>
+   <div class="navbar">
+    <a href="index.html" style="text-decoration: none;">
+        <div class="logo" style="display: flex; margin-bottom: 15px;">TrendView</div>
+    </a>
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <!-- search logo -->
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                type="module"></script>
+            <dotlottie-player src="https://lottie.host/f61e4fbe-b514-442b-8259-499c4b4d6c2d/vdvDEw58dg.lottie"
+                background="transparent" speed="1" style="width: 40px; height: 40px" loop
+                autoplay></dotlottie-player>
+            <!-- search logo -->
         </div>
+    </div>
+    <div class="hamburger-container">
+        <div class="hamburger" onclick="toggleMenu()" style="display: flex; margin-bottom: 13px;">&#9776;</div>
+        <div class="menu" id="menu">
+            <a href="account.html" class="menu-item">
+                <img src="images/profile-user.png" alt="Account">
+                <span>Account</span>
+            </a>
+            <a href="chat.html" class="menu-item">
+                <img src="images/chat.png" alt="Chat">
+                <span>Chat</span>
+            </a>
+            <a href="cart.html" class="menu-item">
+                <img src="images/shopping-bag.png" alt="Cart">
+                <span>Cart</span>
+            </a>
+            <a href="mail.html" class="menu-item">
+                <img src="images/email.png" alt="Notification">
+                <span>Notification</span>
+            </a>
+            <a href="company.html" class="menu-item">
+                <img src="images/consumer-research.png" alt="Company">
+                <span>Company</span>
+            </a>
+            <a href="ForeCasting.html" class="menu-item">
+                <img src="images/product forecasting.png" alt="Company">
+                <span>Product Forecasting</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- navigation -->
 
         <!-- cart items details -->
 
@@ -100,6 +115,13 @@
             document.getElementById("subtotal").innerText = "Rs " + subtotal.toFixed(2);
         }
         updateSubtotal();
+
+          //navigation
+          function toggleMenu() {
+                        var menu = document.getElementById("menu");
+                        menu.classList.toggle("menu-visible");
+                    }
+
 
     </script>
 </body>
